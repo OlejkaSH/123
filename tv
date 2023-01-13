@@ -1,0 +1,22 @@
+//@version=4
+study("Volume Indicator", overlay=true)
+
+// Define the volume threshold for buy and sell signals
+buyThreshold = input(title="Buy Threshold", type=input.integer, defval=50000)
+sellThreshold = input(title="Sell Threshold", type=input.integer, defval=50000)
+
+// Check if the volume is above the buy threshold
+if (volume > buyThreshold)
+    buySignal = true
+else
+    buySignal = false
+
+// Check if the volume is above the sell threshold
+if (volume > sellThreshold)
+    sellSignal = true
+else
+    sellSignal = false
+
+// Plot the buy and sell signals on the chart
+plotshape(buySignal, style=shape.triangleup, location=location.bottom, color=color.green, size=size.small)
+plotshape(sellSignal, style=shape.triangledown, location=location.top, color=color.red, size=size.small)
